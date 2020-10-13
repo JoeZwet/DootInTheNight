@@ -40,9 +40,7 @@ public abstract class MinecraftServerMixin {
     private void tick(BooleanSupplier supplier, CallbackInfo info) {
         if (this.shouldKeepTicking()) {
             long tick = this.getWorld(World.OVERWORLD).getLevelProperties().getTimeOfDay();
-            System.out.println("TICK " + tick);
             if (tick >= 17950L && tick <= 18050L && DootInTheNight.shouldDootTonight()) {
-                System.out.println("[DITN] DOOT TIME");
                 DootInTheNight.lastDoot = System.currentTimeMillis();
                 for (ServerPlayerEntity e : this.getPlayerManager().getPlayerList()) {
                     e.playSound(DootInTheNight.DOOT, SoundCategory.MASTER, 0.01f, this.random.nextFloat() * (1.3f - 0.5f));
